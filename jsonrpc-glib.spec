@@ -4,7 +4,7 @@
 #
 Name     : jsonrpc-glib
 Version  : 3.34.0
-Release  : 2
+Release  : 3
 URL      : https://github.com/GNOME/jsonrpc-glib/archive/3.34.0/jsonrpc-glib-3.34.0.tar.gz
 Source0  : https://github.com/GNOME/jsonrpc-glib/archive/3.34.0/jsonrpc-glib-3.34.0.tar.gz
 Summary  : A JSON-RPC library for GLib
@@ -15,6 +15,7 @@ Requires: jsonrpc-glib-lib = %{version}-%{release}
 Requires: jsonrpc-glib-license = %{version}-%{release}
 BuildRequires : buildreq-gnome
 BuildRequires : buildreq-meson
+BuildRequires : glib-dev
 BuildRequires : json-glib-dev
 BuildRequires : pkgconfig(json-glib-1.0)
 
@@ -71,7 +72,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568086908
+export SOURCE_DATE_EPOCH=1568087117
 # -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
