@@ -4,10 +4,10 @@
 #
 Name     : jsonrpc-glib
 Version  : 3.34.0
-Release  : 3
+Release  : 4
 URL      : https://github.com/GNOME/jsonrpc-glib/archive/3.34.0/jsonrpc-glib-3.34.0.tar.gz
 Source0  : https://github.com/GNOME/jsonrpc-glib/archive/3.34.0/jsonrpc-glib-3.34.0.tar.gz
-Summary  : A JSON-RPC library for GLib
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: jsonrpc-glib-data = %{version}-%{release}
@@ -15,7 +15,6 @@ Requires: jsonrpc-glib-lib = %{version}-%{release}
 Requires: jsonrpc-glib-license = %{version}-%{release}
 BuildRequires : buildreq-gnome
 BuildRequires : buildreq-meson
-BuildRequires : glib-dev
 BuildRequires : json-glib-dev
 BuildRequires : pkgconfig(json-glib-1.0)
 
@@ -39,7 +38,6 @@ Group: Development
 Requires: jsonrpc-glib-lib = %{version}-%{release}
 Requires: jsonrpc-glib-data = %{version}-%{release}
 Provides: jsonrpc-glib-devel = %{version}-%{release}
-Requires: jsonrpc-glib = %{version}-%{release}
 Requires: jsonrpc-glib = %{version}-%{release}
 
 %description dev
@@ -66,28 +64,35 @@ license components for the jsonrpc-glib package.
 
 %prep
 %setup -q -n jsonrpc-glib-3.34.0
+cd %{_builddir}/jsonrpc-glib-3.34.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568087117
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1586238534
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain   builddir
 ninja -v -C builddir
 
+%check
+export LANG=C.UTF-8
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
+meson test -C builddir
+
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/jsonrpc-glib
-cp COPYING %{buildroot}/usr/share/package-licenses/jsonrpc-glib/COPYING
+cp %{_builddir}/jsonrpc-glib-3.34.0/COPYING %{buildroot}/usr/share/package-licenses/jsonrpc-glib/01a6b4bf79aca9b556822601186afab86e8c4fbf
 DESTDIR=%{buildroot} ninja -C builddir install
 
 %files
@@ -121,4 +126,4 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/jsonrpc-glib/COPYING
+/usr/share/package-licenses/jsonrpc-glib/01a6b4bf79aca9b556822601186afab86e8c4fbf
