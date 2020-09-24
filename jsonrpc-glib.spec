@@ -4,7 +4,7 @@
 #
 Name     : jsonrpc-glib
 Version  : 3.38.0
-Release  : 5
+Release  : 6
 URL      : https://github.com/GNOME/jsonrpc-glib/archive/3.38.0/jsonrpc-glib-3.38.0.tar.gz
 Source0  : https://github.com/GNOME/jsonrpc-glib/archive/3.38.0/jsonrpc-glib-3.38.0.tar.gz
 Summary  : No detailed summary available
